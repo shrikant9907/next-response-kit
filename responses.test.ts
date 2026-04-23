@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { normalizeErrors } from '../src/utils';
+import { normalizeErrors } from './utils';
 
 // ─── Mock next/server ────────────────────────────────────────────────────────
 // next/server is a peer dep; we mock NextResponse for the test environment.
@@ -53,7 +53,7 @@ const {
   tooManyRequests,
   serverError,
   respond,
-} = await import('../src/responses');
+} = await import('./responses');
 
 // ─── Helper ──────────────────────────────────────────────────────────────────
 
@@ -208,7 +208,7 @@ describe('unprocessable()', () => {
       formErrors: ['Form submission failed'],
     };
 
-    const res = unprocessable(zodErrors);
+const res = unprocessable(normalizeErrors(zodErrors));
     expect(res.status).toBe(422);
     const body = await json(res);
     expect(body.success).toBe(false);
