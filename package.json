@@ -1,12 +1,13 @@
 {
   "name": "next-response-kit",
-  "version": "1.0.1",
-  "description": "Centralized, typed API response helpers for Next.js App Router. Consistent shape, zero config, full TypeScript support.",
+  "version": "2.0.0",
+  "description": "Drop-in NextResponse replacement for Next.js App Router — consistent API shape, full TypeScript, zero config.",
   "author": "Shrikant Yadav",
   "license": "MIT",
   "keywords": [
     "nextjs",
     "next.js",
+    "nextresponse",
     "api",
     "response",
     "helper",
@@ -16,16 +17,15 @@
     "rest",
     "json",
     "http",
-    "nextresponse",
     "server"
   ],
-  "homepage": "https://github.com/shrikantyadav/next-response-kit#readme",
+  "homepage": "https://github.com/shrikant9907/next-response-kit#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shrikantyadav/next-response-kit.git"
+    "url": "https://github.com/shrikant9907/next-response-kit.git"
   },
   "bugs": {
-    "url": "https://github.com/shrikantyadav/next-response-kit/issues"
+    "url": "https://github.com/shrikant9907/next-response-kit/issues"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -49,7 +49,6 @@
     "build": "tsup index.ts --format cjs,esm --dts --clean --sourcemap",
     "dev": "tsup index.ts --format cjs,esm --dts --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src --ext .ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run typecheck && npm run build"

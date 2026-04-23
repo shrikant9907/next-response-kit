@@ -1,10 +1,9 @@
 /**
- * next-response-kit
- * Centralized, typed API response helper for Next.js App Router
+ * next-response-kit — Types
  * Author: Shrikant Yadav
  */
 
-// ─── HTTP Status Codes ───────────────────────────────────────────────────────
+// ─── HTTP Status Codes ────────────────────────────────────────────────────────
 
 export type HttpStatusCode =
   | 200 | 201 | 202 | 204
@@ -12,10 +11,10 @@ export type HttpStatusCode =
   | 400 | 401 | 402 | 403 | 404 | 405 | 408 | 409 | 410 | 413 | 415 | 422 | 429
   | 500 | 501 | 502 | 503 | 504;
 
-// ─── Standard Response Shape ─────────────────────────────────────────────────
+// ─── Core Response Shape ──────────────────────────────────────────────────────
 
 /**
- * The consistent API response shape returned by every helper.
+ * Every response — success or error — returns this exact shape.
  * `data` is null on errors. `errors` is null on success.
  */
 export interface ApiResponse<T = null> {
@@ -27,18 +26,14 @@ export interface ApiResponse<T = null> {
   timestamp: string;
 }
 
-/**
- * Structured error object — one per validation field or per error event.
- */
+/** One error item — field-level for validation, general for everything else. */
 export interface ApiError {
   field?: string;
   message: string;
   code?: string;
 }
 
-/**
- * Optional metadata for paginated or enriched responses.
- */
+/** Optional metadata — automatically populated by paginated(). */
 export interface ResponseMeta {
   page?: number;
   limit?: number;
@@ -47,7 +42,7 @@ export interface ResponseMeta {
   [key: string]: unknown;
 }
 
-// ─── Builder Option Types ────────────────────────────────────────────────────
+// ─── Options ──────────────────────────────────────────────────────────────────
 
 export interface SuccessOptions<T> {
   data?: T;
@@ -73,11 +68,7 @@ export interface PaginatedOptions<T> {
   headers?: Record<string, string>;
 }
 
-// ─── Zod / Validation Error Shape ───────────────────────────────────────────
-
-/**
- * Shape returned by zod's `.flatten()` — used for auto-serializing zod errors.
- */
+/** Shape returned by Zod's .flatten() — accepted natively by unprocessable(). */
 export interface ZodFlattenedError {
   formErrors?: string[];
   fieldErrors?: Record<string, string[] | undefined>;
